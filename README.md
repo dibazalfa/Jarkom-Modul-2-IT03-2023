@@ -12,9 +12,9 @@ Wiridlangit Suluh Jiwangga | 5027211064 | https://github.com/wiridlangit
 - [Nomor 1](#nomor-1)
 - [Nomor 2](#nomor-2)
 - [Nomor 3](#nomor-3)
-- [Nomor 4](#nomor-4)
-- [Nomor 5](#nomor-5)
-- [Nomor 6](#nomor-6)
+- [Nomor 4](#nomor-4-subdomain)
+- [Nomor 5](#nomor-5-reverse-dns)
+- [Nomor 6](#nomor-6-dns-slave)
 - [Nomor 7](#nomor-7)
 - [Nomor 8](#nomor-8)
 - [Nomor 9](#nomor-9)
@@ -25,11 +25,16 @@ Wiridlangit Suluh Jiwangga | 5027211064 | https://github.com/wiridlangit
 - [Nomor 14](#nomor-14)
 
 # Konfigurasi
-Install bind9 pada node **Yudhistira** dan **Werkudara**.
-Berikut langkah Instalasi bind9:
-1. `apt-get update`
-2. `apt-get install bind9`
-
+1. Masukkan `echo nameserver 192.168.122.1 > /etc/resolv.conf` pada semua node.
+2. Install bind9 pada node **Yudhistira** dan **Werkudara**.
+	Berikut langkah instalasi bind9:
+	1. `apt-get update`
+	2. `apt-get install bind9`
+ 3. Install nginx pada node Arjuna-LB
+    	Berikut langkah instalasi nginx:
+    	1. `apt-get update`
+	2. `apt-get install nginx -y`
+    	
 # Nomor 1
 Menggunakan Topologi ke-3 pada drive yang telah disediakan. Lalu masukan konfigruasi network pada seetiap node.
 
@@ -267,4 +272,247 @@ ping abimanyu.it03.com -c 5
 ![image25](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/7c2032f0-c86d-4b3f-ac72-b6611f386d6c)
 
 # Nomor 7
+## Yudhistira
+Atur konfigurasi sesuai seperti dibawah:
+### /etc/bind/jarkom/baratayuda.abimanyu.it03.com
+![image13](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/2e8066d4-5a59-487d-aec8-3f01d41dffd3)
+### /etc/bind/named.conf.options
+![image29](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4764b03a-c9bf-40bb-a5d2-b18166beb4d3)
+### /etc/bind/named.conf.local
 
+`service bind9 restart`
+
+# Werkudara
+Atur konfigurasi sesuai seperti dibawah:
+### /etc/bind/named.conf.options
+![image29](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/97ee0450-c4d3-4371-88bf-b66c57d344f6)
+
+### /etc/bind/named.conf.local
+![image27](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/948c5309-5f0a-4793-a431-69fb0652479c)
+
+Buat folder `/etc/bind/delegasi` lalu tuliskan command `cp /etc/bind/db.local /etc/bind/delegasi/baratayuda.abimanyu.it03.com`
+
+### /etc/bind/delegasi/baratayuda.abimanyu.it03.com
+![image30](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/50d11da2-4071-4ce5-9e1c-55d1c69bfd05)
+
+Diakhiri dengan `service bind9 restart` pada terminal.
+
+# Sadewa
+Periksa keberhasilan dengan command `ping baratayuda.abimanyu.it03.com` dan `ping www.baratayuda.abimanyu.it03.com`.
+![image28](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/f127a48b-9e2d-49fd-8dab-5f0d37a1cfc7)
+
+# Nomor 8
+## Werkudara
+### /etc/bind/named.conf.local
+![image11](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/aa9ce5c7-e648-4d6a-9e51-cdbe7b508243)
+
+Lalu buat folder `mkdir /etc/bind/jarkom` dan tuliskan command `cp /etc/bind/db.local /etc/bind/jarkom/rjp.baratayuda.abimanyu.it03.com` pada terminal.
+
+### /etc/bind/jarkom/rjp.baratayuda.abimanyu.it03.com
+![image14](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/8e8ad2c1-ad44-451c-bfef-3fd7f0d68891)
+
+diakhiri dengan `service bind9 restart`.
+
+# Sadewa
+Gunakan `ping rjp.baratayuda.abimanyu.it03.com` atau `www.ping rjp.baratayuda.abimanyu.it03.com` untuk melihat keberhasilan konfigurasi.
+![image2](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/9dc405db-b756-40ae-aac1-ee7c886e153b)
+
+# Nomor 9
+## Worker (Prabukusuma, Abimanyu, Wisanggeni)
+### /var/www/jarkom/index.php
+![image18](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/c2ed9039-ef67-4409-b5ca-8b44f0817df1)
+
+### /etc/nginx/sites-available/jarkom
+![image24](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/29bf321b-9a3b-4724-a3de-72ef88ed2355)
+
+selanjutnya tuliskan command `ln -s /etc/nginx/sites-available/jarkom /etc/nginx/sites-enabled` dilanjutkan dengan `rm /etc/nginx/sites-enabled/default`.
+tuliskan `service nginx restart`.
+
+Lakukan hal yang sama di ketiga worker, bedakan di port dan isi dari website php.
+
+## Sadewa
+Pada terminal tuliskan commadn dibawah untuk periksa apakah sudah berhasil:
+`lynx http://10.65.4.2:8001`
+![image10](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/84606006-c24c-4507-b222-352015d0aab3)
+
+`lynx http://10.65.4.3:8002`
+![image31](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/516f2a6d-1679-4be1-bb13-aefc13cd6dfd)
+
+`lynx http://10.65.4.4:8003`
+![image32](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/1fc43afc-d1d4-43e9-b514-a369a66c7adb)
+
+# Nomor 10
+## Arjuna
+### /etc/nginx/sites-available/arjuna.it03.com
+```
+echo ‘http {
+	upstream nodes_lb {
+	server 10.65.4.2:8001;
+server 10.65.4.3:8002;
+server 10.65.4.4:8003;
+}
+}
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name arjuna.it03.com;
+
+	location / {
+		proxy_pass http://nodes_lb;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+}’
+```
+
+dilanjut dengan 
+1. `echo 'user www-data'`
+2. `worker_processes auto;`
+3. `pid /run/nginx pid;`
+4. `include /etc/nginx/modules-enabled/*.conf;`
+
+### /etc/nginx/nginx.conf
+```
+events {
+	worker_connections 768;
+	#multi_accept on
+}
+http {
+	upstream nodes_lb {
+		server 10.65.4.2:8001;
+server 10.65.4.3:8002;
+server 10.65.4.4:8003;
+}
+
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name arjuna.it03.com;
+
+	location / {
+		proxy_pass http://nodes_lb;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+}’ > /etc/nginx/nginx.conf
+}
+```
+lanjut dengan tulis command:
+1. `ln -s /etc/nginx/sites-available/arjuna.it03.com /etc/nginx/sites-enabled/arjuna.it03.com`
+2. `rm /etc/nginx/sites-enabled/arjuna.it03.com`
+3. `service nginx restart`
+
+# Nomor 11
+## Abimanyu
+Ikuti command dibawah ini:
+1. `cd /var/www`
+2. `wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1a4V23hwK9S7hQEDEcv9FL14UkkrHc-Zc' -O abimanyu`
+3. `unzip abimanyu -d abimanyu.it03`
+4. `mv abimanyu.it03/abimanyu.yyy.com/* abimanyu.it03`
+5. `rmdir abimanyu.it03/abimanyu.yyy.com`
+
+### /etc/apache2/sites-available/abimanyu.it03.conf
+![image17](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4127a573-1570-445a-a694-fe231901dd4b)
+
+tuliskan `a2ensite abimanyu.it03.conf` pada terminal lalu `service apache2 restart`
+
+## Sadewa
+Untuk periksa keberhasilan bisa tuliskan `lynx http://www.abimanyu.it03.com`.
+![image27](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4856e201-6c83-4913-91e7-cfd3d43dabd2)
+
+# Nomor 12
+## Abimanyu
+### /etc/apache2/sites-available/abimanyu.it03.conf
+Tambahkan `Alias "/home"`
+![image50](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/b31b60d0-e3f9-4249-ad1d-6a0d0592d098)
+
+## Sadewa
+Periksa keberhasilan dengan `lynx http://ww.abimanyu.it03.com/home`.
+![image2](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/79d834f8-285c-4b92-961f-d6d23e4805e5)
+
+# Nomor 13
+## Yudhistira
+### /etc/bind/jarkom/abimanyu.it03.com
+Tambahkan `www.parikesit	IN	A	10.65.4.3`
+![image31](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/7b3ef54a-d554-4063-9048-9402440992f3)
+
+## Abimanyu
+Tuliskan command sesuai dengan dibawah ini:
+1. `cd /var/www`
+2. `wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1LdbYntiYVF_NVNgJis1GLCLPEGyIOreS' -O parikesit.zip`
+3. `unzip parikesit.zip -d parikesit.abimanyu.it03`
+4. `mv parikesit.abimanyu.it03/parikesit.abimanyu.yyy.com/* parikesit.abimanyu.it03`
+5. `rmdir parikesit.abimanyu.it03/parikesit.abimanyu.yyy.com`
+6. `mkdir parikesit.abimanyu.it03/secret`
+7. `echo “html bebas” > /parikesit.abimanyu.it03/secret/bebas.html`
+
+### /etc/apache2/sites-available/parikesit.abimanyu.it03.conf
+![image34](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/713b0eb9-83aa-4970-b719-75ff4a8ed39a)
+
+dilanjutkan deengan `a2ensite parikesit.abimanyu.it03.conf` dan `service apache2 restart`.
+
+## Sadewa
+Tuliskan `lynx http://www.parikesit.abimanyu.it03.com` untuk periksa keberhasilan.
+![image41](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/1b73c344-6eff-4fcb-a798-7aafdcbed824)
+
+# Nomor 14
+## Abimanyu
+### /etc/apache2/sites-available/parikesit.abimanyu.it03.com
+tambahkan code berikut
+  ```
+<Directory /var/www/parikesit.abimanyu.it03/public>
+        Options +Indexes
+    </Directory>
+
+<Directory /var/www/parikesit.abimanyu.it03/secret>
+        Options -Indexes
+    </Directory>
+```
+Diakhiri dengan `service apache2 restart`.
+
+# Sadewa
+Masukan command dibawah untuk periksa keberhasilan:
+1. `lynx http://www.parikesit.abimanyu.it03.com/public`
+![image40](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/176ef440-52ad-48e6-bc15-e7c567d77db3)
+
+2. `lynx http://www.parikesit.abimanyu.it03.com/secret`
+![image20](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/97c80488-9778-454f-b722-a299e85e282f)
+![image1](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/bebb824a-9154-4fa8-bf5c-a33b4db805aa)
+
+# Nomor 15
+## Abimanyu
+### /etc/apache2/sites-available/parikesit.abimanyu.it03.conf 
+Tambahkan code berikut:
+```
+ErrorDocument 404 /error/404.html
+ErrorDocument 403 /error/403.html
+```
+Diakhiri dengan `service apache2 restart`
+
+## Sadewa
+Masukan command dibawah untuk periksa keberhasilan:
+1. `lynx http://parikesit.abimanyu.it03.com/halo`
+`custom 404 not found`
+![image12](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/6efd2c90-e91f-48fb-b6a6-390946eee781)
+
+2. `lynx http://parikesit.abimanyu.it03.com/secret`
+`custom 403 forbidden`
+![image3](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/11fa87af-c288-4d9b-bfcf-2048c6eaa0e2)
+
+# Nomor 16
+## Abimanyu
+### /etc/sites-available/parikesit.abimanyu.it03.conf
+Tambahkan code berikut:
+`Alias /js /var/www/parikesit.abimanyu.it03/public/js`
+
+## Sadewa
+Masukan command dibawah untuk periksa keberhasilan:
+`lynx http://www.parikesit.abimanyu.it03.com/js`
+![image33](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4cf659f6-5a14-46cc-97d4-cbef497c6be4)
+
+# Nomor 17
+## Abimanyu
