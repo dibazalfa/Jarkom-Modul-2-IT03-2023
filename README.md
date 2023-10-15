@@ -30,12 +30,13 @@ Wiridlangit Suluh Jiwangga | 5027211064 | https://github.com/wiridlangit
 - [Nomor 19](#nomor-19)
 - [Nomor 20](#nomor-20)
 # Konfigurasi
-1. Masukkan `echo nameserver 192.168.122.1 > /etc/resolv.conf` pada semua node.
-2. Install bind9 pada node **Yudhistira** dan **Werkudara**.
+1. Masukkan `iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.65.0.0/16` pada node **Pandudewanata**. (10.65 adalah prefix yang ditentukan untuk kelompok IT03)
+2. Masukkan `echo nameserver 192.168.122.1 > /etc/resolv.conf` pada semua node.
+3. Install bind9 pada node **Yudhistira** dan **Werkudara**.
 	Berikut langkah instalasi bind9:
 	1. `apt-get update`
 	2. `apt-get install bind9`
- 3. Install nginx pada node Arjuna-LB
+ 4. Install nginx pada node Arjuna-LB
     	Berikut langkah instalasi nginx:
     	1. `apt-get update`
 	2. `apt-get install nginx -y`
