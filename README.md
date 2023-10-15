@@ -451,7 +451,7 @@ Tuliskan command sesuai dengan dibawah ini:
 7. `echo “html bebas” > /parikesit.abimanyu.it03/secret/bebas.html`
 
 ### /etc/apache2/sites-available/parikesit.abimanyu.it03.conf
-![image34](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/713b0eb9-83aa-4970-b719-75ff4a8ed39a)
+![image39](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/a3df021b-ad05-4bc2-b709-c7f584f202b5)
 
 dilanjutkan deengan `a2ensite parikesit.abimanyu.it03.conf` dan `service apache2 restart`.
 
@@ -516,3 +516,64 @@ Masukan command dibawah untuk periksa keberhasilan:
 
 # Nomor 17
 ## Abimanyu
+download resources rjp yang diberikan ke dalam /var/www dengan cara yang sama seperti soal sebelumnya.
+### /etc/apache2/sites-available/rjp.baratayuda.abimanyu.it03.conf
+![image34](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/02c918c1-4975-4821-ada4-e76956f8baec)
+
+## Sadewa
+Masukan command dibawah untuk periksa keberhasilan:
+1. `lynx http://www.rjp.baratayuda.abimanyu.it03.com`
+![image23](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/bf7948e6-1e9a-4b72-8883-79e4c03f0c13)
+
+2. `lynx http://www.rjp.baratayuda.abimanyu.it03.com:14000`
+3. `lynx http://www.rjp.baratayuda.abimanyu.it03.com:14400`
+![image20](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/3051bb71-ec84-4c2b-bd17-52dabf8d57c7)
+
+# Nomor 18
+## /etc/apache2/sites-available/rjp.baratayuda.abimanyu.it03.com
+Tambahkan konfigurasi:
+```
+<Directory "/var/www/rjp.baratayuda.abimanyu.it03">
+        Options +FollowSymLinks -Multiviews
+        AllowOverride All
+        AuthType Basic
+        AuthName "Restricted Content"
+        AuthUserFile /etc/apache2/.htpasswd
+        Require valid-user
+    </Directory>
+```
+Lanjutkan mengikuti langkah dibawah:
+1. `cd /etc/apache2/sites-available/`
+2. `htpasswd -c /etc/apache2/.htpasswd Wayang (kemudian, masukkan password baratayudait03)`
+3. `curl http://www.rjp.baratayuda.abimanyu.it03.com (tanpa auth)`
+![image56](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/d150a27e-3e37-4c9c-ac4d-3449be4db139)
+4. `curl http://www.rjp.baratayuda.abimanyu.it03.com:14000 -u Wayang:baratayudait03`
+![image28](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/d3dd5dce-09ea-4f01-9d4d-f31cd0f5fb7c)
+
+# Nomor 19
+## Abimanyu
+### /etc/apache2/sites–available/abimanyu.it03.conf
+Tambahkan konfigurasi:
+`ServerAlias 10.65.4.3 #IP Abimanyu `
+
+## Sadewa
+Masukan command dibawah untuk periksa keberhasilan:
+`lynx http://10.65.4.3`
+![image44](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/affbff18-1aa1-46c2-a0e0-4ec76c3e054f)
+
+# Nomor 20
+## Abimanyu
+### /etc/apache2/sites-available/parikesit.abimanyu.it03.conf
+Tambahkan code sebagai berikut:
+```
+RewriteEngine On
+
+    RewriteCond %{REQUEST_URI} abimanyu [NC]
+
+    RewriteRule (.*) /public/images/abimanyu.png [L]
+```
+
+## Sadewa
+Masukan command dibawah untuk periksa keberhasilan:
+`lynx http://www.parikesit.abimanyu.it03.com/aksdjabimanyu`
+![image37](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/6daa73a0-dde2-4a19-9094-dc3791e12921)
