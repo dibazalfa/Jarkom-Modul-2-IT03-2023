@@ -104,3 +104,62 @@ iface eth0 inet static
 	gateway 10.65.4.1
 ```
 
+# Nomor 2
+Ditentukan Yudhistira sebagai DNS Master dan Sadewa sebagai client.
+## Yudhistira
+### /etc/bind/named.conf.local
+```
+zone “arjuna.it03.com” {
+	type master;
+	file “/etc/bind/jarkom/arjuna.it03.com
+};
+```
+Lalu buat folder baru bernama `jarkom` lalu setelah itu gunakan command `cp /etc/bind/db.local /etc/bind/jarkom/arjuna.it03.com` pada terminal untuk membuat file `arjuna.it03.com`.
+
+### /etc/bind/jarkom/arjuna.it03.com
+![image12](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/460f3244-a35e-42a1-9148-8b7c08e029a9)
+
+
+diakhiri dengan command `service bind9 restart`.
+
+## Sadewa
+### /etc/resolv.conf
+`nameserver 10.65.1.2`
+
+setelah mengganti nameserver pada ip yang sesuai masukkan command `nslookup arjuna.it03.com` atau `nslookup www.arjuna.it03.com`. (command `ping` juga bisa digunakan untuk mengganti `nslookup`)
+
+Output jika berhasil akan terlihat seperti ini:
+![image22](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/63343d06-53dc-455c-941d-dd4d30fdce32)
+
+
+![image16](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/dd48beb5-a66c-431d-8257-fa268fb63213)
+
+
+# Nomor 3
+Sama seperti nomor 2 hanya saja mengganti `arjuna` menjadi `abimanyu`.
+## Yudhistira
+### /etc/bind/named.conf.local
+```
+zone “abimanyu.it03.com” {
+	type master;
+	file “/etc/bind/jarkom/abimanyu.it03.com
+};
+```
+
+### /etc/bind/jarkom/abimanyu.it03.com
+![image21](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/aa4f813a-479d-45a6-a5d5-0979fdbd4fd3)
+
+diakhiri dengan command `service bind9 restart`.
+
+# Nomor 4 (subdomain)
+Membuat subdomain pada `abimanyu`
+## Yudhistira
+### /etc/bind/jarkom/abimanyu.it03.com
+Tambah konfigruasi `parikesit	IN	A		10.65.4.3 #IP Abimanyu`
+![image3](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/b574184c-8c30-4c50-b605-d19c67430a2f)
+
+## Sadewa
+Gunakan `nslookup parikesit.abimanyu.it03.com` untuk melihat output.
+![image9](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/afc40066-ac77-4147-a779-47916c121e39)
+
+# Nomor 5
