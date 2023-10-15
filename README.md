@@ -23,7 +23,12 @@ Wiridlangit Suluh Jiwangga | 5027211064 | https://github.com/wiridlangit
 - [Nomor 12](#nomor-12)
 - [Nomor 13](#nomor-13)
 - [Nomor 14](#nomor-14)
-
+- [Nomor 15](#nomor-15)
+- [Nomor 16](#nomor-16)
+- [Nomor 17](#nomor-17)
+- [Nomor 18](#nomor-18)
+- [Nomor 19](#nomor-19)
+- [Nomor 20](#nomor-20)
 # Konfigurasi
 1. Masukkan `echo nameserver 192.168.122.1 > /etc/resolv.conf` pada semua node.
 2. Install bind9 pada node **Yudhistira** dan **Werkudara**.
