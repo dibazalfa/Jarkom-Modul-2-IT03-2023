@@ -428,8 +428,9 @@ lanjut dengan tulis command:
 3. `service nginx restart`
 
 # Nomor 11
+Melakukan konfigurasi Apache Web Server pada worker Abimanyu dengan web server www.abimanyu.it03.com
 ## Abimanyu
-Ikuti command dibawah ini:
+Ikuti command dibawah ini untuk mengunduh resource yang telah diberikan dan memasukkannya ke dalam /var/www/abimanyu.it03:
 1. `cd /var/www`
 2. `wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1a4V23hwK9S7hQEDEcv9FL14UkkrHc-Zc' -O abimanyu`
 3. `unzip abimanyu -d abimanyu.it03`
@@ -446,6 +447,7 @@ Untuk periksa keberhasilan bisa tuliskan `lynx http://www.abimanyu.it03.com`.
 ![image27](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4856e201-6c83-4913-91e7-cfd3d43dabd2)
 
 # Nomor 12
+Mengubah agar url www.abimanyu.it03.com/index.php/home menjadi www.abimanyu.it03.com/home
 ## Abimanyu
 ### /etc/apache2/sites-available/abimanyu.it03.conf
 Tambahkan `Alias "/home"`
@@ -456,13 +458,14 @@ Periksa keberhasilan dengan `lynx http://ww.abimanyu.it03.com/home`.
 ![image2](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/79d834f8-285c-4b92-961f-d6d23e4805e5)
 
 # Nomor 13
+Melakukan konfigurasi Apache Web Server pada subdomain www.parikesit.abimanyu.yyy.com
 ## Yudhistira
 ### /etc/bind/jarkom/abimanyu.it03.com
 Tambahkan `www.parikesit	IN	A	10.65.4.3`
 ![image31](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/7b3ef54a-d554-4063-9048-9402440992f3)
 
 ## Abimanyu
-Tuliskan command sesuai dengan dibawah ini:
+Ikuti command dibawah ini untuk mengunduh resource yang telah diberikan dan memasukkannya ke dalam /var/www/parikesit.abimanyu.it03:
 1. `cd /var/www`
 2. `wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1LdbYntiYVF_NVNgJis1GLCLPEGyIOreS' -O parikesit.zip`
 3. `unzip parikesit.zip -d parikesit.abimanyu.it03`
@@ -481,6 +484,7 @@ Tuliskan `lynx http://www.parikesit.abimanyu.it03.com` untuk periksa keberhasila
 ![image41](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/1b73c344-6eff-4fcb-a798-7aafdcbed824)
 
 # Nomor 14
+Pada www.parikesit.abimanyu.it03.com pada folder /public akan directory listing, pada folder /secret tidak dapat diakses (403 Forbidden)
 ## Abimanyu
 ### /etc/apache2/sites-available/parikesit.abimanyu.it03.com
 tambahkan code berikut
@@ -505,6 +509,7 @@ Masukan command dibawah untuk periksa keberhasilan:
 ![image1](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/bebb824a-9154-4fa8-bf5c-a33b4db805aa)
 
 # Nomor 15
+Meng-kustom halaman error pada folder /error untuk mengganti error kode pada Apache
 ## Abimanyu
 ### /etc/apache2/sites-available/parikesit.abimanyu.it03.conf 
 Tambahkan code berikut:
@@ -525,6 +530,7 @@ Masukan command dibawah untuk periksa keberhasilan:
 ![image3](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/11fa87af-c288-4d9b-bfcf-2048c6eaa0e2)
 
 # Nomor 16
+Mengkonfigurasi agar www.parikesit.abimanyu.it03.com/public/js menjadi www.parikesit.abimanyu.it03.com/js
 ## Abimanyu
 ### /etc/sites-available/parikesit.abimanyu.it03.conf
 Tambahkan code berikut:
@@ -536,6 +542,7 @@ Masukan command dibawah untuk periksa keberhasilan:
 ![image33](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4cf659f6-5a14-46cc-97d4-cbef497c6be4)
 
 # Nomor 17
+Mengkonfigurasi agar www.rjp.baratayuda.abimanyu.it03.com agar hanya dapat diakses melalui port 14000 dan 14400
 ## Abimanyu
 download resources rjp yang diberikan ke dalam /var/www dengan cara yang sama seperti soal sebelumnya.
 ### /etc/apache2/sites-available/rjp.baratayuda.abimanyu.it03.conf
@@ -551,6 +558,7 @@ Masukan command dibawah untuk periksa keberhasilan:
 ![image20](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/3051bb71-ec84-4c2b-bd17-52dabf8d57c7)
 
 # Nomor 18
+Membuat authentikasi username berupa "Wayang" dan password "baratayudait03" untuk mengakses www.rjp.baratayuda.it03.com
 ## /etc/apache2/sites-available/rjp.baratayuda.abimanyu.it03.com
 Tambahkan konfigurasi:
 ```
@@ -572,6 +580,7 @@ Lanjutkan mengikuti langkah dibawah:
 ![image28](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/d3dd5dce-09ea-4f01-9d4d-f31cd0f5fb7c)
 
 # Nomor 19
+Setiap kali iases IP dari Abimanyu, akan secara otomatis dialihkan ke www.abimanyu.it03.com
 ## Abimanyu
 ### /etc/apache2/sites–available/abimanyu.it03.conf
 Tambahkan konfigurasi:
@@ -583,6 +592,7 @@ Masukan command dibawah untuk periksa keberhasilan:
 ![image44](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/affbff18-1aa1-46c2-a0e0-4ec76c3e054f)
 
 # Nomor 20
+Mengubah request gambar yang memiliki substring "abimanyu" akan diarahkan menuju abimanyu.png
 ## Abimanyu
 ### /etc/apache2/sites-available/parikesit.abimanyu.it03.conf
 Tambahkan code sebagai berikut:
