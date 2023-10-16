@@ -173,6 +173,7 @@ diakhiri dengan command `service bind9 restart`.
 setelah mengganti nameserver pada ip yang sesuai masukkan command `nslookup arjuna.it03.com` atau `nslookup www.arjuna.it03.com`. (command `ping` juga bisa digunakan untuk mengganti `nslookup`)
 
 Output jika berhasil akan terlihat seperti ini:
+
 ![image22](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/63343d06-53dc-455c-941d-dd4d30fdce32)
 
 
@@ -207,11 +208,13 @@ Membuat subdomain pada parikesit.abimanyu.it03.com yang mengarah ke `abimanyu`
 ## Yudhistira
 ### /etc/bind/jarkom/abimanyu.it03.com
 Tambah konfigruasi `parikesit	IN	A		10.65.4.3 #IP Abimanyu`
+
 ![image3](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/7b9c9801-9862-47ad-9a94-0b6f5888aa60)
 
 
 ## Sadewa
 Gunakan `nslookup parikesit.abimanyu.it03.com` untuk melihat output.
+
 ![image9](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/b5e7dc86-3d8e-43ce-993e-127485378e5c)
 
 
@@ -237,6 +240,7 @@ diakhiri dengan `service bind9 restart`
 
 ## Sadewa
 Gunakan command `host -t PTR 10.65.4.3` untuk mengetahui apakah sudah berhasil atau tidak.
+
 ![image5](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/0ff112eb-e18d-4c6c-a57c-4bfdb7b723d9)
 
 
@@ -290,10 +294,12 @@ lalu dilanjutkan `service bind9 restart`
 `nameserver 10.65.2.2`
 
 ping arjuna.it03.com -c 5
+
 ![image1](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/8e28ceab-377d-4e7e-8f87-83b67734af27)
 
 
 ping abimanyu.it03.com -c 5
+
 ![image25](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/7c2032f0-c86d-4b3f-ac72-b6611f386d6c)
 
 # Nomor 7
@@ -442,7 +448,7 @@ http {
 
 lanjut dengan tulis command:
 1. `ln -s /etc/nginx/sites-available/arjuna.it03.com /etc/nginx/sites-enabled/arjuna.it03.com`
-2. `rm /etc/nginx/sites-enabled/arjuna.it03.com`
+2. `rm /etc/nginx/sites-enabled/default`
 3. `service nginx restart`
 
 ## Sadewa
@@ -467,7 +473,6 @@ Ikuti command dibawah ini untuk mengunduh resource yang telah diberikan dan mema
 ```
 <VirtualHost *:80>
     ServerName abimanyu.it03.com
-    ServerAlias 10.65.4.3
     ServerAlias www.abimanyu.it03.com
     ServerAdmin webmaster@localhost
     DocumentRoot /var/www/abimanyu.it03
@@ -615,7 +620,7 @@ Tambahkan konfigurasi:
 ```
 Lanjutkan mengikuti langkah dibawah:
 1. `cd /etc/apache2/sites-available/`
-2. `htpasswd -c /etc/apache2/.htpasswd Wayang (kemudian, masukkan password baratayudait03)`
+2. `htpasswd -c /etc/apache2/.htpasswd Wayang` (kemudian, masukkan password baratayudait03)
 3. `curl http://www.rjp.baratayuda.abimanyu.it03.com` (tanpa auth)
 ![image56](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/d150a27e-3e37-4c9c-ac4d-3449be4db139)
 4. `curl http://www.rjp.baratayuda.abimanyu.it03.com:14000 -u Wayang:baratayudait03` (menggunakan auth)
