@@ -195,6 +195,13 @@ zone “abimanyu.it03.com” {
 
 diakhiri dengan command `service bind9 restart`.
 
+## Sadewa
+Masukkan command `nslookup abimanyu.it03.com` atau `nslookup www.abimanyu.it03.com`. (command `ping` juga bisa digunakan untuk mengganti `nslookup`)
+
+![](https://cdn.discordapp.com/attachments/955087631224537088/1163427001739264041/image.png?ex=653f88d4&is=652d13d4&hm=ffff79caabd9f3c6eb5bc23509cc222d9afe9052948d9a775b0b2e34a8c89c85&)
+
+![](https://media.discordapp.net/attachments/955087631224537088/1163427062665719890/image.png?ex=653f88e3&is=652d13e3&hm=e061e2237c382d12bc985cb7806a06f76e8561f153fc5d5b3180f09ff9841506&=&width=1440&height=303)
+
 # Nomor 4 (subdomain)
 Membuat subdomain pada parikesit.abimanyu.it03.com yang mengarah ke `abimanyu`
 ## Yudhistira
