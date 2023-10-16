@@ -43,10 +43,14 @@ Wiridlangit Suluh Jiwangga | 5027211064 | https://github.com/wiridlangit
     	
 # Nomor 1
 Menggunakan Topologi ke-3 pada drive yang telah disediakan. Lalu masukan konfigurasi network pada setiap node.
+
 DNS Master = Yudhistira
+
 DNS Slave = Werkudara
 Load Balancer = Arjuna
+
 Web Server = Prabukusuma, Abimanyu, Wisanggeni
+
 Client = Sadewa, Nakula
 
 ![Screenshot 2023-10-15 140006](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/19817d4b-cd04-4822-812c-272e67d0eb4b)
@@ -425,13 +429,13 @@ http {
 ```
 
 lanjut dengan tulis command:
-```
 1. `ln -s /etc/nginx/sites-available/arjuna.it03.com /etc/nginx/sites-enabled/arjuna.it03.com`
 2. `rm /etc/nginx/sites-enabled/arjuna.it03.com`
 3. `service nginx restart`
-```
+
 ## Sadewa
 `lynx http://www.arjuna.it03.com`
+
 ngab knp blom kamu masukin potonya
 
 # Nomor 11
