@@ -305,6 +305,7 @@ Atur konfigurasi sesuai seperti dibawah:
 ### /etc/bind/named.conf.options
 ![image29](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4764b03a-c9bf-40bb-a5d2-b18166beb4d3)
 ### /etc/bind/named.conf.local
+![](https://cdn.discordapp.com/attachments/955087631224537088/1163428198634242118/image.png?ex=653f89f2&is=652d14f2&hm=641459c7616e2b3c3225af2035e4176db385d80b74f51137689ff64599b3937f&)
 
 `service bind9 restart`
 
