@@ -366,12 +366,12 @@ Menggunakan algoritma roud robin untuk load balancer pada arjuna yang berjalan d
 ## Arjuna
 ### /etc/nginx/sites-available/arjuna.it03.com
 ```
-echo ‘http {
+http {
 	upstream nodes_lb {
-	server 10.65.4.2:8001;
-server 10.65.4.3:8002;
-server 10.65.4.4:8003;
-}
+		server 10.65.4.2:8001;
+		server 10.65.4.3:8002;
+		server 10.65.4.4:8003;
+	}
 }
 server {
 	listen 80;
@@ -384,48 +384,55 @@ server {
 		proxy_set_header Host $host;
 		proxy_set_header X-Real-IP $remote_addr;
 		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
 }
-}’
 ```
-
-dilanjut dengan 
-1. `echo 'user www-data'`
-2. `worker_processes auto;`
-3. `pid /run/nginx pid;`
-4. `include /etc/nginx/modules-enabled/*.conf;`
-
+Lakukan konfigurasi pada nginx
 ### /etc/nginx/nginx.conf
 ```
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
 events {
 	worker_connections 768;
 	#multi_accept on
 }
+
 http {
 	upstream nodes_lb {
 		server 10.65.4.2:8001;
-server 10.65.4.3:8002;
-server 10.65.4.4:8003;
+        	server 10.65.4.3:8002;
+        	server 10.65.4.4:8003;
+    	}
+
+    server {
+	    listen 80;
+	    listen [::]:80;
+
+	    server_name arjuna.it03.com;
+
+        location / {
+            proxy_pass http://nodes_lb;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
 }
 
-server {
-	listen 80;
-	listen [::]:80;
-
-	server_name arjuna.it03.com;
-
-	location / {
-		proxy_pass http://nodes_lb;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-}
-}’ > /etc/nginx/nginx.conf
-}
 ```
+
 lanjut dengan tulis command:
+```
 1. `ln -s /etc/nginx/sites-available/arjuna.it03.com /etc/nginx/sites-enabled/arjuna.it03.com`
 2. `rm /etc/nginx/sites-enabled/arjuna.it03.com`
 3. `service nginx restart`
+```
+## Sadewa
+`lynx http://www.arjuna.it03.com`
+ngab knp blom kamu masukin potonya
 
 # Nomor 11
 Melakukan konfigurasi Apache Web Server pada worker Abimanyu dengan web server www.abimanyu.it03.com
