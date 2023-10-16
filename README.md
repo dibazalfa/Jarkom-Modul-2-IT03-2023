@@ -595,6 +595,11 @@ download resources rjp yang diberikan ke dalam /var/www dengan cara yang sama se
 ### /etc/apache2/sites-available/rjp.baratayuda.abimanyu.it03.conf
 ![image34](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/02c918c1-4975-4821-ada4-e76956f8baec)
 
+### etc/apache2/ports.conf
+Tambahkan 
+1. `Listem 14000` 
+2. `Listen 14400`
+
 ## Sadewa
 Masukan command dibawah untuk periksa keberhasilan:
 1. `lynx http://www.rjp.baratayuda.abimanyu.it03.com`
