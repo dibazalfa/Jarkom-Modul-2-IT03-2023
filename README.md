@@ -326,7 +326,9 @@ Diakhiri dengan `service bind9 restart` pada terminal.
 
 # Sadewa
 Periksa keberhasilan dengan command `ping baratayuda.abimanyu.it03.com` dan `ping www.baratayuda.abimanyu.it03.com`.
+
 ![image28](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/f127a48b-9e2d-49fd-8dab-5f0d37a1cfc7)
+![](https://cdn.discordapp.com/attachments/955087631224537088/1163428508287119400/image.png?ex=653f8a3b&is=652d153b&hm=4de15f2e68e572f27fb0ff609da9d907e5c5fd2191ff0881221ac54a2db7f417&)
 
 # Nomor 8
 Membuat subdomain melalui werkudara dengan akses rjp.baratayuda.abimanyu.it03.com dengan alias www.rjp.baratayuda.abimanyu.it03.com yang mengarah ke abimanyu
@@ -343,7 +345,9 @@ diakhiri dengan `service bind9 restart`.
 
 # Sadewa
 Gunakan `ping rjp.baratayuda.abimanyu.it03.com` atau `www.ping rjp.baratayuda.abimanyu.it03.com` untuk melihat keberhasilan konfigurasi.
+
 ![image2](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/9dc405db-b756-40ae-aac1-ee7c886e153b)
+![](https://media.discordapp.net/attachments/955087631224537088/1163429794231373884/image.png?ex=653f8b6e&is=652d166e&hm=86995bf78f96ef412743e929a21566d9bbfe7bf78fa419e450157452669dcc92&=&width=1228&height=203)
 
 # Nomor 9
 Melakukan deployment pada masing-masing worker dengan Arjuna sebagai load balancer
@@ -466,17 +470,20 @@ tuliskan `a2ensite abimanyu.it03.conf` pada terminal lalu `service apache2 resta
 
 ## Sadewa
 Untuk periksa keberhasilan bisa tuliskan `lynx http://www.abimanyu.it03.com`.
+
 ![image27](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4856e201-6c83-4913-91e7-cfd3d43dabd2)
 
 # Nomor 12
 Mengubah agar url www.abimanyu.it03.com/index.php/home menjadi www.abimanyu.it03.com/home
 ## Abimanyu
 ### /etc/apache2/sites-available/abimanyu.it03.conf
-Tambahkan `Alias "/home"`
+Tambahkan `Alias "/home" "/var/www/abimanyu.it03/home.html`
+
 ![image50](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/b31b60d0-e3f9-4249-ad1d-6a0d0592d098)
 
 ## Sadewa
 Periksa keberhasilan dengan `lynx http://ww.abimanyu.it03.com/home`.
+
 ![image2](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/79d834f8-285c-4b92-961f-d6d23e4805e5)
 
 # Nomor 13
@@ -484,6 +491,7 @@ Melakukan konfigurasi Apache Web Server pada subdomain www.parikesit.abimanyu.yy
 ## Yudhistira
 ### /etc/bind/jarkom/abimanyu.it03.com
 Tambahkan `www.parikesit	IN	A	10.65.4.3`
+
 ![image31](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/7b3ef54a-d554-4063-9048-9402440992f3)
 
 ## Abimanyu
@@ -497,12 +505,14 @@ Ikuti command dibawah ini untuk mengunduh resource yang telah diberikan dan mema
 7. `echo “html bebas” > /parikesit.abimanyu.it03/secret/bebas.html`
 
 ### /etc/apache2/sites-available/parikesit.abimanyu.it03.conf
+
 ![image39](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/a3df021b-ad05-4bc2-b709-c7f584f202b5)
 
 dilanjutkan deengan `a2ensite parikesit.abimanyu.it03.conf` dan `service apache2 restart`.
 
 ## Sadewa
 Tuliskan `lynx http://www.parikesit.abimanyu.it03.com` untuk periksa keberhasilan.
+
 ![image41](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/1b73c344-6eff-4fcb-a798-7aafdcbed824)
 
 # Nomor 14
