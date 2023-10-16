@@ -62,6 +62,6 @@ echo "$nginx_conf" > /etc/nginx/nginx.conf
 
 ln -s /etc/nginx/sites-available/arjuna.it03.com	/etc/nginx/sites-enabled/arjuna.it03.com
 
-rm /etc/nginx/sites-enabled/arjuna.it03.com
+rm /etc/nginx/sites-enabled/default
 
 service nginx restart
