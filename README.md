@@ -42,7 +42,12 @@ Wiridlangit Suluh Jiwangga | 5027211064 | https://github.com/wiridlangit
 	2. `apt-get install nginx -y`
     	
 # Nomor 1
-Menggunakan Topologi ke-3 pada drive yang telah disediakan. Lalu masukan konfigruasi network pada seetiap node.
+Menggunakan Topologi ke-3 pada drive yang telah disediakan. Lalu masukan konfigurasi network pada setiap node.
+DNS Master = Yudhistira
+DNS Slave = Werkudara
+Load Balancer = Arjuna
+Web Server = Prabukusuma, Abimanyu, Wisanggeni
+Client = Sadewa, Nakula
 
 ![Screenshot 2023-10-15 140006](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/19817d4b-cd04-4822-812c-272e67d0eb4b)
 
@@ -139,6 +144,7 @@ iface eth0 inet static
 ```
 
 # Nomor 2
+Membuat website utama pada node arjuna dengan akses ke arjuna.it03.com dengan alias www.arjuna.it03.com
 Ditentukan Yudhistira sebagai DNS Master dan Sadewa sebagai client.
 ## Yudhistira
 ### /etc/bind/named.conf.local
@@ -170,7 +176,7 @@ Output jika berhasil akan terlihat seperti ini:
 
 
 # Nomor 3
-Sama seperti nomor 2 hanya saja mengganti `arjuna` menjadi `abimanyu`.
+Membuat website utama pada node arjuna dengan akses ke abimanyu.it03.com dengan alias www.abimanyu.it03.com
 ## Yudhistira
 ### /etc/bind/named.conf.local
 ```
@@ -186,7 +192,7 @@ zone “abimanyu.it03.com” {
 diakhiri dengan command `service bind9 restart`.
 
 # Nomor 4 (subdomain)
-Membuat subdomain pada `abimanyu`
+Membuat subdomain pada parikesit.abimanyu.it03.com yang mengarah ke `abimanyu`
 ## Yudhistira
 ### /etc/bind/jarkom/abimanyu.it03.com
 Tambah konfigruasi `parikesit	IN	A		10.65.4.3 #IP Abimanyu`
@@ -199,6 +205,7 @@ Gunakan `nslookup parikesit.abimanyu.it03.com` untuk melihat output.
 
 
 # Nomor 5 (reverse dns)
+Membuat reverse domain untuk domain utama (hanya abimanyu yg di reverse)
 ## Yudhistira
 Tambahkan konfigurasi berikut:
 ### /etc/bind/named.conf.local
@@ -223,6 +230,7 @@ Gunakan command `host -t PTR 10.65.4.3` untuk mengetahui apakah sudah berhasil a
 
 
 # Nomor 6 (dns slave)
+Membuat werkudara sebagai DNS Slave agar tetap dapat dihubungi ketika Yudhistira bermasalah
 Tambahkan konfigruasi 
 ## Yudhistira
 ```
@@ -278,6 +286,7 @@ ping abimanyu.it03.com -c 5
 ![image25](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/7c2032f0-c86d-4b3f-ac72-b6611f386d6c)
 
 # Nomor 7
+Membuat subdomain khusus untuk perang yaitu baratayuda.abimanyu.it03.com dengan alias www.baratayuda.abimanyu.it03.com yang didelegasikan dari Yudhistira ke Werkudara 
 ## Yudhistira
 Atur konfigurasi sesuai seperti dibawah:
 ### /etc/bind/jarkom/baratayuda.abimanyu.it03.com
@@ -308,6 +317,7 @@ Periksa keberhasilan dengan command `ping baratayuda.abimanyu.it03.com` dan `pin
 ![image28](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/f127a48b-9e2d-49fd-8dab-5f0d37a1cfc7)
 
 # Nomor 8
+Membuat subdomain melalui werkudara dengan akses rjp.baratayuda.abimanyu.it03.com dengan alias www.rjp.baratayuda.abimanyu.it03.com yang mengarah ke abimanyu
 ## Werkudara
 ### /etc/bind/named.conf.local
 ![image11](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/aa9ce5c7-e648-4d6a-9e51-cdbe7b508243)
@@ -324,6 +334,7 @@ Gunakan `ping rjp.baratayuda.abimanyu.it03.com` atau `www.ping rjp.baratayuda.ab
 ![image2](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/9dc405db-b756-40ae-aac1-ee7c886e153b)
 
 # Nomor 9
+Melakukan deployment pada masing-masing worker dengan Arjuna sebagai load balancer
 ## Worker (Prabukusuma, Abimanyu, Wisanggeni)
 ### /var/www/jarkom/index.php
 ![image18](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/c2ed9039-ef67-4409-b5ca-8b44f0817df1)
@@ -348,6 +359,10 @@ Pada terminal tuliskan commadn dibawah untuk periksa apakah sudah berhasil:
 ![image32](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/1fc43afc-d1d4-43e9-b514-a369a66c7adb)
 
 # Nomor 10
+Menggunakan algoritma roud robin untuk load balancer pada arjuna yang berjalan di port 8001-8003
+    - Prabakusuma:8001
+    - Abimanyu:8002
+    - Wisanggeni:8003
 ## Arjuna
 ### /etc/nginx/sites-available/arjuna.it03.com
 ```
