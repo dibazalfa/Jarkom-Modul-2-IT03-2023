@@ -436,7 +436,10 @@ lanjut dengan tulis command:
 ## Sadewa
 `lynx http://www.arjuna.it03.com`
 
-ngab knp blom kamu masukin potonya
+![untitled](https://cdn.discordapp.com/attachments/955087631224537088/1163417251379150928/image.png?ex=653f7fbf&is=652d0abf&hm=30fd7f9c34b2ee7fcd5c89d5e9721b590b282535d58852d67fbfbfaa1ad29eee&)
+![untitled](https://cdn.discordapp.com/attachments/955087631224537088/1163417300980994058/image.png?ex=653f7fcb&is=652d0acb&hm=f3c842e988965a9e699b6ce84d28a2982eb0d870dad2af4226d8ebe307806b81&)
+![untitled](https://cdn.discordapp.com/attachments/955087631224537088/1163417344920526898/image.png?ex=653f7fd6&is=652d0ad6&hm=209aadf31893086a0f2ce994ac39002238cf4a76b35cab2bd0fc4592d5f16683&)
+
 
 # Nomor 11
 Melakukan konfigurasi Apache Web Server pada worker Abimanyu dengan web server www.abimanyu.it03.com
