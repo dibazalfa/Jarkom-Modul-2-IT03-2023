@@ -464,7 +464,19 @@ Ikuti command dibawah ini untuk mengunduh resource yang telah diberikan dan mema
 5. `rmdir abimanyu.it03/abimanyu.yyy.com`
 
 ### /etc/apache2/sites-available/abimanyu.it03.conf
-![image17](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/4127a573-1570-445a-a694-fe231901dd4b)
+```
+<VirtualHost *:80>
+    ServerName abimanyu.it03.com
+    ServerAlias 10.65.4.3
+    ServerAlias www.abimanyu.it03.com
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/abimanyu.it03
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+```
 
 tuliskan `a2ensite abimanyu.it03.conf` pada terminal lalu `service apache2 restart`
 
@@ -478,8 +490,6 @@ Mengubah agar url www.abimanyu.it03.com/index.php/home menjadi www.abimanyu.it03
 ## Abimanyu
 ### /etc/apache2/sites-available/abimanyu.it03.conf
 Tambahkan `Alias "/home" "/var/www/abimanyu.it03/home.html`
-
-![image50](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/b31b60d0-e3f9-4249-ad1d-6a0d0592d098)
 
 ## Sadewa
 Periksa keberhasilan dengan `lynx http://ww.abimanyu.it03.com/home`.
@@ -606,9 +616,9 @@ Tambahkan konfigurasi:
 Lanjutkan mengikuti langkah dibawah:
 1. `cd /etc/apache2/sites-available/`
 2. `htpasswd -c /etc/apache2/.htpasswd Wayang (kemudian, masukkan password baratayudait03)`
-3. `curl http://www.rjp.baratayuda.abimanyu.it03.com (tanpa auth)`
+3. `curl http://www.rjp.baratayuda.abimanyu.it03.com` (tanpa auth)
 ![image56](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/d150a27e-3e37-4c9c-ac4d-3449be4db139)
-4. `curl http://www.rjp.baratayuda.abimanyu.it03.com:14000 -u Wayang:baratayudait03`
+4. `curl http://www.rjp.baratayuda.abimanyu.it03.com:14000 -u Wayang:baratayudait03` (menggunakan auth)
 ![image28](https://github.com/dibazalfa/Jarkom-Modul-2-IT03-2023/assets/113527799/d3dd5dce-09ea-4f01-9d4d-f31cd0f5fb7c)
 
 # Nomor 19
